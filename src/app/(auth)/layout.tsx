@@ -13,7 +13,9 @@ export default function AuthLayout({
           <Logo />
         </Link>
       </div>
-      <div className="w-full">{children}</div>
+      <main className="w-full flex-1 flex items-center justify-center">
+        {children}
+      </main>
     </div>
   );
 }
