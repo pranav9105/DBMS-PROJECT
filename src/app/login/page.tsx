@@ -11,7 +11,7 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/dashboard');
+    router.push('/dashboard/loading');
   };
 
   return (
@@ -25,17 +25,17 @@ export default function LoginPage() {
                 to continue to Receipt Manager
             </p>
         </div>
-        <form onSubmit={handleLogin} className="w-full space-y-6 text-left">
+        <form onSubmit={handleLogin} className="w-full space-y-6">
             <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="email">Email or phone</Label>
+                <Label htmlFor="email" className="text-center">Email or phone</Label>
                 <Input id="email" type="email" required />
             </div>
-            <div className="text-sm">
+            <div className="text-sm text-center">
                 <Link href="#" className="font-semibold text-primary hover:underline">
                     Forgot email?
                 </Link>
             </div>
-            <div>
+            <div className="text-center">
                 <p className="text-sm text-muted-foreground">
                     Not your computer? Use a private browsing window to sign in.
                     <Link href="#" className="font-semibold text-primary hover:underline ml-1">
