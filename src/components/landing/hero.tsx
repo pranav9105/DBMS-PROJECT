@@ -7,10 +7,10 @@ export function HeroSection() {
     <section className="container grid lg:grid-cols-2 gap-12 items-center py-12 md:py-24">
       <div className="flex flex-col gap-4 animate-fade-in-down">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tighter">
-          Digitize Receipts, Visualize Spending.
+          Your AI-Powered Receipt Manager for Google Wallet.
         </h1>
         <p className="text-lg text-muted-foreground">
-          Receipt Wallet helps you effortlessly track your expenses. Upload receipts, see where your money goes, and keep everything organized in one place.
+          Effortlessly scan, categorize, and store your receipts in Google Wallet. Let our AI handle the details while you track your spending with powerful insights.
         </p>
         <div className="flex gap-4 mt-4">
           <Button asChild size="lg">
