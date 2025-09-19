@@ -26,8 +26,8 @@ export default function LoginPage() {
             </p>
         </div>
         <form onSubmit={handleLogin} className="w-full space-y-6">
-            <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="email" className="text-center">Email or phone</Label>
+            <div className="grid w-full items-center gap-1.5 text-center">
+                <Label htmlFor="email">Email or phone</Label>
                 <Input id="email" type="email" required />
             </div>
             <div className="text-sm text-center">
