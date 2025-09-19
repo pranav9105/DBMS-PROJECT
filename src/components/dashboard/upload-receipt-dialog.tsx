@@ -32,7 +32,7 @@ import {
 } from '@/components/ui/select';
 import { UploadCloud, Loader2 } from 'lucide-react';
 import { getCategorySuggestion } from '@/app/actions';
-import { receiptCategories } from '@/lib/data';
+import { receiptCategories, Receipt, receipts } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
@@ -49,7 +49,7 @@ const formSchema = z.object({
   receiptFile: z.any().optional(),
 });
 
-export function UploadReceiptDialog() {
+export function UploadReceiptDialog({ onReceiptAdd }: { onReceiptAdd: (receipt: Receipt) => void }) {
   const [open, setOpen] = useState(false);
   const [isSuggesting, startTransition] = useTransition();
   const { toast } = useToast();
@@ -84,13 +84,25 @@ export function UploadReceiptDialog() {
 
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    const newReceipt: Receipt = {
+        id: (receipts.length + 1).toString(),
+        merchant: values.merchantName,
+        total: values.totalAmount,
+        date: new Date(values.date).toISOString(),
+        category: values.category,
+    };
+    onReceiptAdd(newReceipt);
     toast({
       title: "Receipt Uploaded",
       description: `${values.merchantName} receipt for $${values.totalAmount} was saved.`,
     })
     setOpen(false);
-    form.reset();
+    form.reset({
+        merchantName: '',
+        totalAmount: 0,
+        date: new Date().toISOString().split('T')[0],
+        category: '',
+    });
   }
 
   return (
@@ -181,7 +193,7 @@ export function UploadReceiptDialog() {
                     <FormItem>
                     <FormLabel>Receipt Image (optional)</FormLabel>
                     <FormControl>
-                        <Input type="file" onChange={(e) => field.onChange(e.target.files)} />
+                        <Input type="file" onChange={(e) => field.onChange(e.target.files?.[0])} />
                     </FormControl>
                     <FormMessage />
                     </FormItem>

@@ -17,12 +17,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Badge } from "@/components/ui/badge";
-import { receipts, Receipt } from '@/lib/data';
+import { Receipt } from '@/lib/data';
 import { useState } from 'react';
 
-export function RecentReceipts() {
-    const [receiptList, setReceiptList] = useState<Receipt[]>(receipts.slice(0, 5));
-
+export function RecentReceipts({ receiptList, setReceiptList }: { receiptList: Receipt[], setReceiptList: React.Dispatch<React.SetStateAction<Receipt[]>> }) {
+    
     const handleDelete = (id: string) => {
         setReceiptList(receiptList.filter(receipt => receipt.id !== id));
     }
@@ -45,7 +44,7 @@ export function RecentReceipts() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {receiptList.map((receipt) => (
+            {receiptList.slice(0, 5).map((receipt) => (
               <TableRow key={receipt.id}>
                 <TableCell>{new Date(receipt.date).toLocaleDateString()}</TableCell>
                 <TableCell className="font-medium">{receipt.merchant}</TableCell>
