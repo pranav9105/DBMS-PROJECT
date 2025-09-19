@@ -12,7 +12,8 @@ export function HeroSection() {
         className="object-cover -z-10 brightness-50"
         data-ai-hint="receipt scan"
       />
-      <div className="container flex flex-col gap-4 animate-fade-in-down">
+      <div className="absolute inset-0 bg-black/50 z-0" />
+      <div className="container relative z-10 flex flex-col gap-4 animate-fade-in-down">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
           Your AI-Powered Receipt Manager for Google Wallet.
         </h1>
