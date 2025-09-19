@@ -1,3 +1,5 @@
+'use client';
+
 import {
   SidebarProvider,
   Sidebar,
@@ -20,12 +22,19 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
+import { usePathname } from 'next/navigation';
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
+  if (pathname === '/dashboard/loading') {
+    return <>{children}</>;
+  }
+
   return (
     <SidebarProvider>
       <Sidebar>
