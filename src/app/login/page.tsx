@@ -28,7 +28,7 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.toLowerCase() === 'random@123gmail.com' && password === 'Random@123gmail.com') {
+    if (email.toLowerCase() === 'random@123gmail.com' && password === '12345678') {
       router.push('/dashboard');
     } else {
       toast({
