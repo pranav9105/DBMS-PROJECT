@@ -70,7 +70,7 @@ export default function LoginPage() {
                         </Link>
                     </p>
                 </div>
-                <div className="flex items-center justify-between pt-4">
+                <div className="flex items-center justify-center pt-4 w-full gap-4">
                     <Button variant="ghost" asChild>
                         <Link href="/register">Create account</Link>
                     </Button>
@@ -103,7 +103,7 @@ export default function LoginPage() {
                     </label>
                 </div>
 
-                <div className="flex items-center justify-between pt-4">
+                <div className="flex items-center justify-center pt-4 w-full gap-4">
                     <Button variant="ghost" onClick={() => setStep(1)}>
                         Back
                     </Button>
