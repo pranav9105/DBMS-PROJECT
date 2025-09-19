@@ -2,6 +2,12 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
 import { Languages } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function LandingHeader() {
   return (
@@ -19,10 +25,25 @@ export function LandingHeader() {
           <Button asChild>
             <Link href="/register">Register</Link>
           </Button>
-          <Button variant="ghost" size="icon">
-            <Languages className="h-5 w-5" />
-            <span className="sr-only">Change language</span>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Languages className="h-5 w-5" />
+                <span className="sr-only">Change language</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>English</DropdownMenuItem>
+              <DropdownMenuItem>Spanish</DropdownMenuItem>
+              <DropdownMenuItem>Hindi</DropdownMenuItem>
+              <DropdownMenuItem>Arabic</DropdownMenuItem>
+              <DropdownMenuItem>Bengali</DropdownMenuItem>
+              <DropdownMenuItem>Portuguese</DropdownMenuItem>
+              <DropdownMenuItem>Russian</DropdownMenuItem>
+              <DropdownMenuItem>Japanese</DropdownMenuItem>
+              <DropdownMenuItem>Punjabi</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
