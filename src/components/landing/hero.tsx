@@ -24,11 +24,11 @@ export function HeroSection() {
       <div className="flex flex-col gap-8 animate-fade-in-down" style={{ animationDelay: '0.2s' }}>
         <div className="relative h-64 md:h-96 rounded-lg overflow-hidden shadow-xl">
           <Image
-            src="https://www.hellobright.com/wp-content/uploads/2024/05/iStock-1322917455-1-1024x633.jpg"
-            alt="A beautiful shot of snowy mountains."
+            src="https://www.bankrate.com/brp/2024/10/25182651/What-are-reciept-scanning-apps.jpg?auto=webp&optimize=high&crop=16:9"
+            alt="Phone scanning a receipt"
             fill
             className="object-cover"
-            data-ai-hint="snowy mountains"
+            data-ai-hint="receipt scan"
           />
         </div>
       </div>
