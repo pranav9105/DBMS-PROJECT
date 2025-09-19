@@ -53,8 +53,8 @@ export default function LoginPage() {
         
         {step === 1 && (
             <form onSubmit={handleNext} className="w-full space-y-6">
-                <div className="grid w-full items-center gap-1.5 text-center">
-                    <Label htmlFor="email">Email or phone</Label>
+                <div className="grid w-full items-center gap-1.5">
+                    <Label htmlFor="email" className="text-center">Email or phone</Label>
                     <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="text-sm text-center">
@@ -83,13 +83,13 @@ export default function LoginPage() {
 
         {step === 2 && (
              <form onSubmit={handleLogin} className="w-full space-y-6">
-                <div className="grid w-full items-center gap-1.5 text-center">
+                <div className="grid w-full items-center gap-1.5">
                     <div className="flex justify-center items-center py-2">
                         <Badge variant="outline" className="gap-2">
                            <UserCircle className='size-4'/> {email}
                         </Badge>
                     </div>
-                    <Label htmlFor="password">Enter your password</Label>
+                    <Label htmlFor="password" className="text-center">Enter your password</Label>
                     <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 
