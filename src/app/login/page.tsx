@@ -8,11 +8,13 @@ import { Logo } from '@/components/logo';
 import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { UserCircle } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export default function LoginPage() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
+  const [isVerified, setIsVerified] = useState(false);
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,11 +82,21 @@ export default function LoginPage() {
                     <Input id="password" type="password" required />
                 </div>
                 
+                <div className="flex items-center space-x-2">
+                    <Checkbox id="terms" onCheckedChange={(checked) => setIsVerified(checked as boolean)} />
+                    <label
+                        htmlFor="terms"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                        I am not a robot
+                    </label>
+                </div>
+
                 <div className="flex items-center justify-between pt-4">
                     <Button variant="ghost" onClick={() => setStep(1)}>
                         Back
                     </Button>
-                    <Button type="submit">
+                    <Button type="submit" disabled={!isVerified}>
                         Sign In
                     </Button>
                 </div>
