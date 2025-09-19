@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
+import { Languages } from 'lucide-react';
 
 export function LandingHeader() {
   return (
@@ -17,6 +18,10 @@ export function LandingHeader() {
           </Button>
           <Button asChild>
             <Link href="/register">Register</Link>
+          </Button>
+          <Button variant="ghost" size="icon">
+            <Languages className="h-5 w-5" />
+            <span className="sr-only">Change language</span>
           </Button>
         </div>
       </div>
