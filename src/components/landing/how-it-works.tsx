@@ -26,7 +26,7 @@ const steps = [
 export function HowItWorksSection() {
   return (
     <section className="container py-12 md:py-24 bg-secondary">
-      <div className="text-center mb-12">
+      <div className="text-center mb-12 animate-fall-in" style={{ animationDelay: '0.1s' }}>
         <h2 className="text-3xl md:text-4xl font-bold">How It Works</h2>
         <p className="text-lg text-muted-foreground mt-2">
           Get control of your receipts in 4 simple steps.
@@ -38,7 +38,8 @@ export function HowItWorksSection() {
           {steps.map((step, index) => (
             <div
               key={step.title}
-              className={`flex gap-6 items-start ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+              className={`flex gap-6 items-start animate-fall-in ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+              style={{ animationDelay: `${0.1 * (index + 2)}s` }}
             >
               <div className="flex flex-col items-center">
                 <div className="flex items-center justify-center bg-background rounded-full w-20 h-20 border-4 border-secondary relative">
