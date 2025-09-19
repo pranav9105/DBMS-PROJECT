@@ -17,7 +17,7 @@ export default function DashboardLoading() {
 
   return (
     <div className="flex h-screen items-center justify-center bg-background">
-      <div className="animate-pop-in">
+      <div>
         <Logo className="h-16 w-auto" />
       </div>
     </div>
