@@ -24,7 +24,7 @@ export function HeroSection() {
       <div className="flex flex-col gap-8 animate-fade-in-down" style={{ animationDelay: '0.2s' }}>
         <div className="relative h-64 md:h-96 rounded-lg overflow-hidden shadow-xl">
           <Image
-            src="https://www.bankrate.com/brp/2024/10/25182651/What-are-reciept-scanning-apps.jpg?auto=webp&optimize=high&crop=16:9"
+            src="https://images.wondershare.com/pdfelement/article-trans-image/1601/ocr-receipt-scanner-1.png"
             alt="Phone scanning a receipt"
             fill
             className="object-cover"
