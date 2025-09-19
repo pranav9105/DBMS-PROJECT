@@ -25,7 +25,7 @@ export default function LoginPage() {
                 to continue to Receipt Manager
             </p>
         </div>
-        <form onSubmit={handleLogin} className="w-full space-y-6">
+        <form onSubmit={handleLogin} className="w-full space-y-6 text-left">
             <div className="grid w-full items-center gap-1.5">
                 <Label htmlFor="email">Email or phone</Label>
                 <Input id="email" type="email" required />
