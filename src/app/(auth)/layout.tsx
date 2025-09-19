@@ -8,7 +8,7 @@ export default function AuthLayout({
 }) {
   return (
     <div className="flex flex-col min-h-screen items-center justify-center p-4 bg-background">
-      <div className="mb-8">
+      <div className="absolute top-8">
         <Link href="/">
           <Logo />
         </Link>
