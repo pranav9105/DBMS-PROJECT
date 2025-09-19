@@ -16,7 +16,7 @@ export default function LoginPage() {
   };
 
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="mx-auto w-full max-w-sm">
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>
