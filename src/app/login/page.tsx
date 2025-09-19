@@ -12,7 +12,7 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Mock login logic
-    router.push('/dashboard/loading');
+    router.push('/dashboard');
   };
 
   return (
