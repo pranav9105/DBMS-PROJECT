@@ -9,11 +9,14 @@ import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { UserCircle } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useToast } from '@/hooks/use-toast';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { toast } = useToast();
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isVerified, setIsVerified] = useState(false);
 
   const handleNext = (e: React.FormEvent) => {
@@ -25,7 +28,15 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/dashboard');
+    if (email.toLowerCase() === 'random@123gmail.com' && password === 'Random@123gmail.com') {
+      router.push('/dashboard');
+    } else {
+      toast({
+        variant: 'destructive',
+        title: 'Login Failed',
+        description: 'Invalid email or password. Please try again.',
+      });
+    }
   };
 
   return (
@@ -79,7 +90,7 @@ export default function LoginPage() {
                         </Badge>
                     </div>
                     <Label htmlFor="password">Enter your password</Label>
-                    <Input id="password" type="password" required />
+                    <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 
                 <div className="flex items-center space-x-2">
