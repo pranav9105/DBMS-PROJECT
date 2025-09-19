@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
-import { Languages } from 'lucide-react';
+import { Languages, Moon, Sun } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTheme } from 'next-themes';
+import { ThemeToggle } from '../theme-toggle';
 
 export function LandingHeader() {
   return (
@@ -25,6 +27,7 @@ export function LandingHeader() {
           <Button asChild>
             <Link href="/register">Register</Link>
           </Button>
+          <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">
