@@ -41,7 +41,7 @@ export default function LoginPage() {
   };
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full">
       <CardHeader className="items-center text-center">
         <Logo />
         <CardTitle className="text-2xl">Sign in</CardTitle>
@@ -67,7 +67,7 @@ export default function LoginPage() {
                 </Link>
               </p>
             </div>
-            <div className="flex items-center justify-between pt-4 w-full">
+            <div className="flex items-center justify-center pt-4 w-full gap-4">
               <Button variant="link" asChild className="px-0">
                 <Link href="/register">Create account</Link>
               </Button>
