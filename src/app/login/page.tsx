@@ -41,7 +41,7 @@ export default function LoginPage() {
   };
 
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="w-full max-w-md">
       <CardHeader className="items-center text-center">
         <Logo />
         <CardTitle className="text-2xl">Sign in</CardTitle>
