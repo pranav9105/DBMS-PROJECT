@@ -51,7 +51,7 @@ export default function DashboardLayout({
               <SidebarMenuButton
                 href="/dashboard"
                 asChild
-                isActive
+                isActive={pathname === '/dashboard'}
                 tooltip="Dashboard"
               >
                 <Link href="/dashboard">
@@ -61,7 +61,7 @@ export default function DashboardLayout({
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton href="#" asChild tooltip="All Receipts">
+              <SidebarMenuButton href="#" asChild tooltip="All Receipts" isActive={pathname === '/receipts'}>
                 <Link href="#">
                   <Receipt />
                   Receipts
@@ -69,7 +69,7 @@ export default function DashboardLayout({
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton href="#" asChild tooltip="Google Wallet">
+              <SidebarMenuButton href="#" asChild tooltip="Google Wallet" isActive={pathname === '/wallet'}>
                 <Link href="#">
                   <Wallet />
                   Wallet
@@ -81,7 +81,7 @@ export default function DashboardLayout({
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton href="#" asChild tooltip="Settings">
+              <SidebarMenuButton href="#" asChild tooltip="Settings" isActive={pathname === '/settings'}>
                 <Link href="#">
                   <Settings />
                   Settings
