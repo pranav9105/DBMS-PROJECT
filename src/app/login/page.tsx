@@ -18,7 +18,7 @@ export default function LoginPage() {
         title: "Login Successful",
         description: "Redirecting to your dashboard...",
     });
-    router.push('/dashboard/loading');
+    router.push('/dashboard');
   };
 
   return (
