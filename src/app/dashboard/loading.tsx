@@ -8,11 +8,7 @@ export default function DashboardLoading() {
   const router = useRouter();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      router.replace('/dashboard');
-    }, 3000);
-
-    return () => clearTimeout(timer);
+    router.replace('/dashboard');
   }, [router]);
 
   return (
