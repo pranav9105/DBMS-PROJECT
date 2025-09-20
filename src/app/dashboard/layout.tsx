@@ -31,10 +31,6 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
 
-  if (pathname === '/dashboard/loading') {
-    return <>{children}</>;
-  }
-
   return (
     <SidebarProvider>
       <Sidebar>
