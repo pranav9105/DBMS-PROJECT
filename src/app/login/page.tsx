@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { UserCircle } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (email.toLowerCase() === 'random@123gmail.com' && password === '12345678') {
-      router.push('/dashboard');
+      router.push('/dashboard/loading');
     } else {
       toast({
         variant: 'destructive',
@@ -40,79 +41,76 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex w-full max-w-md flex-col items-center space-y-6 rounded-lg border border-border bg-card p-10 text-card-foreground">
+    <Card className="w-full max-w-sm">
+      <CardHeader className="items-center text-center">
         <Logo />
-        <div className="text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-                Sign in
-            </h1>
-            <p className="text-sm text-muted-foreground mt-2">
-                to continue to Receipt Manager
-            </p>
-        </div>
-        
+        <CardTitle className="text-2xl">Sign in</CardTitle>
+        <CardDescription>to continue to Receipt Manager</CardDescription>
+      </CardHeader>
+      <CardContent>
         {step === 1 && (
-            <form onSubmit={handleNext} className="w-full space-y-6">
-                <div className="grid w-full items-center gap-1.5">
-                    <Label htmlFor="email" className="text-center">Email or phone</Label>
-                    <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className="text-sm text-center">
-                    <Link href="#" className="font-semibold text-primary hover:underline">
-                        Forgot email?
-                    </Link>
-                </div>
-                <div className="text-center">
-                    <p className="text-sm text-muted-foreground">
-                        Not your computer? Use a private browsing window to sign in.
-                        <Link href="#" className="font-semibold text-primary hover:underline ml-1">
-                            Learn more
-                        </Link>
-                    </p>
-                </div>
-                <div className="flex items-center justify-center pt-4 w-full gap-4">
-                    <Button variant="ghost" asChild>
-                        <Link href="/register">Create account</Link>
-                    </Button>
-                    <Button type="submit">
-                        Next
-                    </Button>
-                </div>
-            </form>
+          <form onSubmit={handleNext} className="space-y-4">
+            <div className="grid w-full items-center gap-1.5">
+              <Label htmlFor="email">Email or phone</Label>
+              <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div className="text-sm">
+              <Link href="#" className="font-semibold text-primary hover:underline">
+                Forgot email?
+              </Link>
+            </div>
+            <div className="pt-4">
+              <p className="text-sm text-muted-foreground">
+                Not your computer? Use a private browsing window to sign in.
+                <Link href="#" className="font-semibold text-primary hover:underline ml-1">
+                  Learn more
+                </Link>
+              </p>
+            </div>
+            <div className="flex items-center justify-between pt-4 w-full">
+              <Button variant="link" asChild className="px-0">
+                <Link href="/register">Create account</Link>
+              </Button>
+              <Button type="submit">
+                Next
+              </Button>
+            </div>
+          </form>
         )}
 
         {step === 2 && (
-             <form onSubmit={handleLogin} className="w-full space-y-6">
-                <div className="grid w-full items-center gap-1.5">
-                    <div className="flex justify-center items-center py-2">
-                        <Badge variant="outline" className="gap-2">
-                           <UserCircle className='size-4'/> {email}
-                        </Badge>
-                    </div>
-                    <Label htmlFor="password" className="text-center">Enter your password</Label>
-                    <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                
-                <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" onCheckedChange={(checked) => setIsVerified(checked as boolean)} />
-                    <label
-                        htmlFor="terms"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                        I am not a robot
-                    </label>
-                </div>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div className="flex justify-center items-center">
+                <Badge variant="outline" className="gap-2">
+                    <UserCircle className='size-4'/> {email}
+                </Badge>
+            </div>
+            <div className="grid w-full items-center gap-1.5">
+              <Label htmlFor="password">Enter your password</Label>
+              <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <Checkbox id="terms" onCheckedChange={(checked) => setIsVerified(checked as boolean)} />
+              <label
+                htmlFor="terms"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                I am not a robot
+              </label>
+            </div>
 
-                <div className="flex items-center justify-center pt-4 w-full gap-4">
-                    <Button variant="ghost" onClick={() => setStep(1)}>
-                        Back
-                    </Button>
-                    <Button type="submit" disabled={!isVerified}>
-                        Sign In
-                    </Button>
-                </div>
-            </form>
+            <div className="flex items-center justify-between pt-4 w-full">
+              <Button variant="ghost" onClick={() => setStep(1)}>
+                Back
+              </Button>
+              <Button type="submit" disabled={!isVerified}>
+                Sign In
+              </Button>
+            </div>
+          </form>
         )}
-    </div>
+      </CardContent>
+    </Card>
   );
 }
