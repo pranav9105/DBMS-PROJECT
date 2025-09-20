@@ -21,7 +21,9 @@ export function LandingHeader() {
           </Link>
           <div className="hidden sm:flex items-center gap-2 text-sm font-medium">
             <Phone className="h-4 w-4" />
-            <span>1-800-123-4567</span>
+            <Link href="tel:1-800-123-4567" className="transition-colors hover:text-primary">
+              1-800-123-4567
+            </Link>
           </div>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2">
