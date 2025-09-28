@@ -5,7 +5,7 @@ import { HowItWorksSection } from '@/components/landing/how-it-works';
 import { FaqSection } from '@/components/landing/faq';
 import { Footer } from '@/components/landing/footer';
 
-export default function Home() {
+export default function Index() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <LandingHeader />

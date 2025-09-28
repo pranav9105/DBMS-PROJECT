@@ -1,60 +1,115 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Logo } from '@/components/logo';
-import { Languages, Moon, Sun, Phone } from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useTheme } from 'next-themes';
-import { ThemeToggle } from '../theme-toggle';
+"use client"
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Menu, X, Wallet } from 'lucide-react'
+import { useState } from 'react'
 
 export function LandingHeader() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <div className="mr-4 flex items-center">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Logo />
+    <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-background via-background/95 to-background/90 backdrop-blur-md shadow-sm">
+      <div className="container flex h-16 items-center justify-between">
+        {/* Logo / Branding */}
+        <div className="flex items-center">
+          <Link href="/" className="flex items-center space-x-3 mr-10">
+            <Wallet className="w-10 h-10 text-green-600 hover:text-green-700 transition-colors" />
+            <span className="font-extrabold text-2xl bg-gradient-to-r from-green-600 via-emerald-500 to-green-400 bg-clip-text text-transparent">
+              Walletize
+            </span>
           </Link>
-          <div className="hidden sm:flex items-center gap-2 text-sm font-medium">
-            <Phone className="h-4 w-4" />
-            <Link href="tel:1-800-123-4567" className="transition-colors hover:text-primary">
-              1-800-123-4567
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link
+              href="#features"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+            >
+              Features
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all group-hover:w-full"></span>
             </Link>
-          </div>
+            <Link
+              href="#how-it-works"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+            >
+              How It Works
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all group-hover:w-full"></span>
+            </Link>
+            <Link
+              href="#faq"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+            >
+              FAQ
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all group-hover:w-full"></span>
+            </Link>
+          </nav>
         </div>
-        <div className="flex flex-1 items-center justify-end space-x-2">
-          <Button asChild variant="ghost">
-            <Link href="/login">Login</Link>
+
+        {/* Auth Buttons */}
+        <div className="flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-2">
+            <Button variant="ghost" className="rounded-xl" asChild>
+              <Link href="/login">Sign In</Link>
+            </Button>
+            <Button
+              asChild
+              className="rounded-xl bg-gradient-to-r from-green-600 to-emerald-500 hover:opacity-90 transition"
+            >
+              <Link href="/register">Get Started Free</Link>
+            </Button>
+          </div>
+
+          {/* Mobile menu toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden rounded-xl"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
-          <Button asChild>
-            <Link href="/register">Register</Link>
-          </Button>
-          <ThemeToggle />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Languages className="h-5 w-5" />
-                <span className="sr-only">Change language</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>English</DropdownMenuItem>
-              <DropdownMenuItem>Spanish</DropdownMenuItem>
-              <DropdownMenuItem>Hindi</DropdownMenuItem>
-              <DropdownMenuItem>Arabic</DropdownMenuItem>
-              <DropdownMenuItem>Bengali</DropdownMenuItem>
-              <DropdownMenuItem>Portuguese</DropdownMenuItem>
-              <DropdownMenuItem>Russian</DropdownMenuItem>
-              <DropdownMenuItem>Japanese</DropdownMenuItem>
-              <DropdownMenuItem>Punjabi</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden border-t bg-background/95 backdrop-blur-md animate-slideDown">
+          <nav className="container py-4 space-y-4">
+            <Link
+              href="#features"
+              className="block text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Features
+            </Link>
+            <Link
+              href="#how-it-works"
+              className="block text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              How It Works
+            </Link>
+            <Link
+              href="#faq"
+              className="block text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              FAQ
+            </Link>
+            <div className="pt-4 border-t space-y-2">
+              <Button variant="ghost" className="w-full justify-start rounded-xl" asChild>
+                <Link href="/login">Sign In</Link>
+              </Button>
+              <Button
+                className="w-full rounded-xl bg-gradient-to-r from-green-600 to-emerald-500 hover:opacity-90 transition"
+                asChild
+              >
+                <Link href="/register">Get Started Free</Link>
+              </Button>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
-  );
+  )
 }
