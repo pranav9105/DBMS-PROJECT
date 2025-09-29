@@ -113,35 +113,54 @@ export default function RegisterPage() {
     return isValid;
   };
 
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
+ // src/app/register/page.tsx - Updated handleRegister function
+// Replace the handleRegister function in your existing register page with this:
 
-    setIsLoading(true);
+const handleRegister = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  if (!validateForm()) return;
 
-    // Simulate API call
-    try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      toast({
-        title: "Account Created Successfully!",
-        description: "Welcome to Walletize! Redirecting to your dashboard...",
-      });
-      
-      setTimeout(() => {
-        router.push('/dashboard');
-      }, 1000);
-    } catch (error) {
-      toast({
-        title: "Registration Failed",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsLoading(false);
+  setIsLoading(true);
+
+  try {
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        fullName: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Registration failed');
     }
-  };
+
+    toast({
+      title: "Account Created Successfully!",
+      description: "Welcome to Walletize! Redirecting to your dashboard...",
+    });
+    
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 1000);
+  } catch (error: any) {
+    toast({
+      title: "Registration Failed",
+      description: error.message || "Something went wrong. Please try again.",
+      variant: "destructive"
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const passwordStrength = () => {
     const password = formData.password;

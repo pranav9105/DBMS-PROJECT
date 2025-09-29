@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { LandingHeader } from '@/components/landing/header';
 import { WalletizeLogo } from '@/components/icons/logo';
 import { useToast } from '@/hooks/use-toast';
-import { Mail, Lock, Eye, EyeOff, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -46,7 +46,6 @@ export default function LoginPage() {
       ...prev,
       [name]: value
     }));
-    // Clear errors when user starts typing
     if (errors[name as keyof typeof errors]) {
       setErrors(prev => ({
         ...prev,
@@ -79,35 +78,52 @@ export default function LoginPage() {
     return isValid;
   };
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
+ // src/app/login/page.tsx - Updated handleLogin function
+// Replace the handleLogin function in your existing login page with this:
 
-    setIsLoading(true);
+const handleLogin = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  if (!validateForm()) return;
 
-    // Simulate API call
-    try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      toast({
-        title: "Login Successful",
-        description: "Welcome back! Redirecting to your dashboard...",
-      });
-      
-      setTimeout(() => {
-        router.push('/dashboard');
-      }, 1000);
-    } catch (error) {
-      toast({
-        title: "Login Failed",
-        description: "Please check your credentials and try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsLoading(false);
+  setIsLoading(true);
+
+  try {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Login failed');
     }
-  };
+
+    toast({
+      title: "Login Successful",
+      description: "Welcome back! Redirecting to your dashboard...",
+    });
+    
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 1000);
+  } catch (error: any) {
+    toast({
+      title: "Login Failed",
+      description: error.message || "Please check your credentials and try again.",
+      variant: "destructive"
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/10">
